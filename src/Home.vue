@@ -16,15 +16,10 @@
         Oh Tell Me Why
       </button>
 
-      <div v-if="stage === 'result'" class="btn-column">
-        <button class="btn sub" @click="draw">再 Tell Me Why</button>
-
-        <button class="btn save" @click="showTip = true">保存卡面</button>
-      </div>
+      <button v-if="stage === 'result'" class="btn main" @click="draw">
+        再 Tell Me Why
+      </button>
     </div>
-
-    <!-- 右下角提示 -->
-    <div v-if="showTip" class="tip">右击卡面即可保存图片</div>
   </div>
 </template>
 
@@ -45,8 +40,6 @@ const startLock = ref(true);
 const showCardGlow = ref(true);
 const showBtnGlow = ref(false);
 const stage = ref('idle');
-
-const showTip = ref(false);
 
 const backImage = 'images/卡背.png';
 
@@ -109,7 +102,7 @@ const autoSequence = () => {
       sequenceLock.value = false;
       startLock.value = false;
     });
-  }, 9000);
+  }, 9500);
 };
 
 const onCardTap = () => {
@@ -147,49 +140,83 @@ const draw = () => {
 </script>
 
 <style scoped>
+:global(body) {
+  margin: 0;
+  overflow: hidden;
+}
+
+/* 页面容器 */
 .page {
-  height: 100vh;
+  height: 100dvh; 
+  width: 100%;
+ 
+  margin: 0 auto;
+
   background: #fff7d6;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  padding: 16px;
+  box-sizing: border-box;
 }
 
-/* 按钮 */
+/* 按钮区域 */
 .btn-area {
-  margin-top: 30px;
+  margin-top: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
+/* 按钮基础样式（桌面优先） */
 .btn {
-  padding: 12px 20px;
+  padding: 15px 100px;        
+  font-size: 28px;           
   border-radius: 999px;
   border: none;
   font-weight: bold;
+  cursor: pointer;
+
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
+  transition: all 0.15s ease;
+}
+
+/* 点击效果 */
+.btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.15);
 }
 
 .main {
   background: #96e6a1;
 }
 
-.sub {
-  background: #96e6a1;
-}
+@media (max-width: 600px) {
 
-.save {
-  background: #d4fc79;
-  margin-top: 10px;
-}
+  .page {
+    padding: 12px;
+  }
 
-/* 提示 */
-.tip {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 12px;
+  .btn-area {
+    margin-top: 6vh; 
+  }
+
+  .btn {
+    width: 85vw;       
+    max-width: 320px;
+
+    padding: 18px 0;    
+    font-size: 18px;    
+
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  }
 }
 </style>

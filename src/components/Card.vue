@@ -39,8 +39,8 @@ const handleClick = () => {
 
 <style scoped>
 .card-container {
-  width: 80vw;
-  max-width: 320px;
+  width: 100vw;
+  max-width: 400px;
   aspect-ratio: 600 / 970;
   perspective: 1200px;
   position: relative;
@@ -54,7 +54,8 @@ const handleClick = () => {
   border-radius: 12px;
   transform-style: preserve-3d;
   transition: transform 0.7s ease;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 
+              0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .card-face {
@@ -89,13 +90,14 @@ const handleClick = () => {
 }
 
 .text {
-  font-size: 16px;
+  font-size: 28px;
   white-space: pre-line;
   font-style: italic;
   font-weight: bold;
   line-height: 1.6;
 }
 
+/* 浮动动画 */
 @keyframes floatCard {
   0% {
     transform: translateY(0);
@@ -115,7 +117,8 @@ const handleClick = () => {
   height: 100%;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(150, 230, 161, 0.9),
-    0 0 20px rgba(150, 230, 161, 0.6), 0 0 40px rgba(150, 230, 161, 0.3);
+              0 0 20px rgba(150, 230, 161, 0.6), 
+              0 0 40px rgba(150, 230, 161, 0.3);
   animation: pulse 1.8s infinite;
 }
 
@@ -128,6 +131,49 @@ const handleClick = () => {
   }
   100% {
     box-shadow: 0 0 10px rgba(150, 230, 161, 0.5);
+  }
+}
+
+/* =========================
+     移动端适配（核心）
+   ========================= */
+@media (max-width: 600px) {
+
+  .card-container {
+    width: 80vw;         
+    max-width: 300px;
+    animation: floatCardMobile 3s ease-in-out infinite; 
+  }
+
+  .card-inner {
+    border-radius: 10px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  }
+
+  .text-box {
+    padding: 14px;
+  }
+
+  .text {
+    font-size: 18px;      
+    line-height: 1.5;
+  }
+
+  .glow-card {
+    box-shadow: 0 0 6px rgba(150, 230, 161, 0.7),
+                0 0 14px rgba(150, 230, 161, 0.5);
+  }
+}
+
+@keyframes floatCardMobile {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 </style>
