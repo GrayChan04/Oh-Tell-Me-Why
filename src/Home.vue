@@ -48,7 +48,7 @@ const stage = ref('idle');
 
 const showTip = ref(false);
 
-const backImage = '/images/back.png';
+const backImage = './assets/images/卡背.png';
 
 let flipAudio = null;
 
