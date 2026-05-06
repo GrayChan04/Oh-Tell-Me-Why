@@ -48,13 +48,13 @@ const stage = ref('idle');
 
 const showTip = ref(false);
 
-const backImage = './assets/images/卡背.png';
+const backImage = '/images/卡背.png';
 
 let flipAudio = null;
 
 onMounted(() => {
   flipAudio = new Audio(
-    './assets/flip.mp3'
+    '/flip.mp3'
   );
 });
 
